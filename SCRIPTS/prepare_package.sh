@@ -86,7 +86,7 @@ sed -i 's,default n,default y,g' feeds/packages/utils/coremark/Makefile
 #oled
 svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/others/luci-app-oled package/new/luci-app-oled
 #网易云解锁
-svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/others/luci-app-unblockneteasemusic package/new/UnblockNeteaseMusic
+git clone -b master --depth 1 https://github.com/immortalwrt/luci-app-unblockneteasemusic.git package/new/luci-app-unblockneteasemusic
 #定时重启
 svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/lean/luci-app-autoreboot package/lean/luci-app-autoreboot
 #argon主题
