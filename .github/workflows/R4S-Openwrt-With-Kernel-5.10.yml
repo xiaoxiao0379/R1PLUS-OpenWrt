@@ -153,4 +153,3 @@ jobs:
           prerelease: true
           token: ${{ secrets.workflow_token }}
           artifacts: ./artifact/*.gz,./artifact/*.seed,./artiface/*.sha256sum
-
