@@ -1,5 +1,4 @@
 <h1 align="center">NanoPi-R2S/R4S-OpenWrt With kernel 5.10</h1>
-<h2 align="center">使用 Github Actions 在线编译 NanoPi-R2S/R4S 固件(kernel 5.10临时测试版)</h2>
 <p align="center">
 <img src="https://forthebadge.com/images/badges/built-with-love.svg">
 <p>
