@@ -16,8 +16,6 @@ patch -p1 < ./use_json_object_new_int64.patch
 # Patch LuCI 以增添fullcone开关
 wget -q https://github.com/QiuSimons/R2S-R4S-X86-OpenWrt/raw/master/PATCH/new/package/luci-app-firewall_add_fullcone.patch
 patch -p1 < ./luci-app-firewall_add_fullcone.patch
-#FullCone 相关组件
-svn co https://github.com/Lienol/openwrt/branches/main/package/network/fullconenat package/network/fullconenat
 
 ##获取额外package
 #（不用注释这里的任何东西，这不会对提升action的执行速度起到多大的帮助
