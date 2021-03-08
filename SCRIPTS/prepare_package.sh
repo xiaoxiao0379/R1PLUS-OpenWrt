@@ -33,7 +33,7 @@ wget -P package/network/config/firewall/patches/ https://github.com/immortalwrt/
 wget -q https://github.com/QiuSimons/R2S-R4S-X86-OpenWrt/raw/master/PATCH/new/package/luci-app-firewall_add_fullcone.patch
 patch -p1 < ./luci-app-firewall_add_fullcone.patch
 #FullCone 相关组件
-cp -rf ../openwrt-lienol/package/network/fullconenat ./package/network/fullconenat
+svn co https://github.com/Lienol/openwrt/branches/main/package/network/fullconenat package/network/fullconenat
 
 ##获取额外package
 #（不用注释这里的任何东西，这不会对提升action的执行速度起到多大的帮助
