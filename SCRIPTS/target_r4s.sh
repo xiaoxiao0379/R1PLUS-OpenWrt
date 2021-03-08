@@ -7,7 +7,7 @@ wget -P target/linux/rockchip/patches-5.10/ https://github.com/QiuSimons/R2S-R4S
 wget -P target/linux/rockchip/patches-5.10/ https://github.com/QiuSimons/R2S-R4S-X86-OpenWrt/raw/master/PATCH/new/main/213-RK3399-set-critical-CPU-temperature-for-thermal-throttling.patch
 
 #使用特定的优化
-sed -i 's,-mcpu=generic,-march=armv8-a+crypto+crc -mcpu=cortex-a72.cortex-a53+crypto+crc -mtune=cortex-a72.cortex-a53,g' include/target.mk
+sed -i 's,-mcpu=generic,-march=armv8-a+crypto+crc -mabi=lp64,g' include/target.mk
 
 #Experimental
 sed -i '/CRYPTO_DEV_ROCKCHIP/d' ./target/linux/rockchip/armv8/config-5.10
