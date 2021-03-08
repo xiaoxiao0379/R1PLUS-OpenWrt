@@ -6,6 +6,7 @@ rm -rf ./target/linux/rockchip
 svn co https://github.com/immortalwrt/immortalwrt/branches/master/target/linux/rockchip target/linux/rockchip
 rm -rf ./package/boot/uboot-rockchip
 svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/boot/uboot-rockchip package/boot/uboot-rockchip
+svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/boot/arm-trusted-firmware-rk3328 package/boot/arm-trusted-firmware-rk3328
 
 #overclock CPU-temperature
 wget -P target/linux/rockchip/patches-5.10/ https://github.com/QiuSimons/R2S-R4S-X86-OpenWrt/raw/master/PATCH/new/main/213-RK3399-set-critical-CPU-temperature-for-thermal-throttling.patch
