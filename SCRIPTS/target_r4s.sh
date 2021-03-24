@@ -17,7 +17,7 @@ sed -i 's,-mcpu=generic,-march=armv8-a+crypto+crc -mabi=lp64,g' include/target.m
 wget -P package/libs/mbedtls/patches/ https://github.com/QiuSimons/R2S-R4S-X86-OpenWrt/raw/master/PATCH/new/package/100-Implements-AES-and-GCM-with-ARMv8-Crypto-Extensions.patch
 
 # 使用 R8168 驱动
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/r8168 package/new/r8168
+svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8168 package/new/r8168
 wget -q https://github.com/QiuSimons/R2S-R4S-X86-OpenWrt/raw/master/PATCH/new/main/r8168-fix_LAN_led-for_r4s-from_TL.patch
 patch -p1 < ./r8168-fix_LAN_led-for_r4s-from_TL.patch
 sed -i 's,kmod-r8169,kmod-r8168,g' target/linux/rockchip/image/armv8.mk
