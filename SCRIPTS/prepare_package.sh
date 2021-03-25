@@ -17,7 +17,6 @@ rm -rf ./scripts/download.pl
 rm -rf ./include/download.mk
 wget -P scripts/ https://github.com/immortalwrt/immortalwrt/raw/master/scripts/download.pl
 wget -P include/ https://github.com/immortalwrt/immortalwrt/raw/master/include/download.mk
-wget -P include/ https://github.com/immortalwrt/immortalwrt/raw/master/include/package-immortalwrt.mk
 
 ### 必要的 Patches ###
 # Patch arm64 型号名称
@@ -136,8 +135,6 @@ sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generat
 sed -i "s/openclash.config.enable=0/openclash.config.enable=1/g" package/new/luci-app-openclash/root/etc/uci-defaults/luci-openclash
 sed -i 's/+kmod-fast-classifier //g' package/lean/lean-translate/Makefile
 sed -i '/exit 0/i\echo "/usr/share/unblockneteasemusic/" >> /etc/sysupgrade.conf && cat /etc/sysupgrade.conf | sort | uniq > /tmp/tmp_sysupgrade_conf && cat /tmp/tmp_sysupgrade_conf > /etc/sysupgrade.conf' package/lean/lean-translate/files/zzz-default-settings
-sed -i '/chinadnslist/d' package/lean/lean-translate/files/zzz-default-settings
-sed -i '/MosChinaDNS/d' package/lean/lean-translate/files/zzz-default-settings
 # 生成默认配置及缓存
 rm -rf .config
 
