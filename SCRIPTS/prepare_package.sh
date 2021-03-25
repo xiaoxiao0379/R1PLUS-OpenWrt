@@ -123,6 +123,13 @@ svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/others/luci-app-services
 svn co https://github.com/QiuSimons/R2S-R4S-X86-OpenWrt/trunk/PATCH/duplicate/addition-trans-zh package/lean/lean-translate
 
 ### 最后的收尾工作 ###
+# Kernel Config
+echo '
+# CONFIG_CPU_IDLE_GOV_LADDER is not set
+# CONFIG_PCIE_AL is not set
+# CONFIG_OCTEONTX2_AF is not set
+# CONFIG_MMC_TIFM_SD is not set
+' >> ./target/linux/rockchip/armv8/config-5.4
 # Lets Fuck
 mkdir package/base-files/files/usr/bin
 cp -f ../SCRIPTS/fuck package/base-files/files/usr/bin/fuck
