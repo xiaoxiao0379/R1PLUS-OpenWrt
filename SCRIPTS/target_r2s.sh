@@ -66,4 +66,6 @@ CONFIG_CRYPTO_SM4_ARM64_CE=y
 # 预配置一些插件
 wget -P files/etc/config/ https://github.com/QiuSimons/R2S-R4S-X86-OpenWrt/raw/master/PATCH/R2S/files/etc/config/cpulimit
 
+chmod -R 755 ./
+
 exit 0
