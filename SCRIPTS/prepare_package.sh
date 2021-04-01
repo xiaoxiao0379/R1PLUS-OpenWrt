@@ -48,7 +48,7 @@ svn co https://github.com/Lienol/openwrt/branches/main/package/network/fullconen
 
 ### 获取额外的基础软件包 ###
 # AutoCore
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/lean/autocore package/lean/autocore
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/autocore package/lean/autocore
 rm -rf ./feeds/packages/utils/coremark
 svn co https://github.com/immortalwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
 # 更换 Nodejs 版本
