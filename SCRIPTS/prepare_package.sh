@@ -91,7 +91,7 @@ sed -i 's,https://api.ipify.org,http://members.3322.org/dyndns/getip,g' ./packag
 # CPU 控制相关
 svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/lean/luci-app-cpufreq package/lean/luci-app-cpufreq
 svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/others/luci-app-cpulimit package/lean/luci-app-cpulimit
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ntlf9t/cpulimit package/lean/cpulimit
+svn co https://github.com/immortalwrt/packages/trunk/utils/cpulimit package/lean/cpulimit
 # 动态DNS
 svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/others/luci-app-tencentddns package/new/luci-app-tencentddns
 # FRP 内网穿透
