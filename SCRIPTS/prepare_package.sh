@@ -51,6 +51,8 @@ svn co https://github.com/Lienol/openwrt/branches/main/package/network/fullconen
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/autocore package/lean/autocore
 rm -rf ./feeds/packages/utils/coremark
 svn co https://github.com/immortalwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
+# AutoMount
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/lean/automount package/lean/automount
 # 更换 Nodejs 版本
 rm -rf ./feeds/packages/lang/node
 svn co https://github.com/nxhack/openwrt-node-packages/trunk/node feeds/packages/lang/node
