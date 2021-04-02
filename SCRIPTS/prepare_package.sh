@@ -15,12 +15,12 @@ sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 # 维多利亚的秘密
 rm -rf ./scripts/download.pl
 rm -rf ./include/download.mk
-wget -P scripts/ https://github.com/immortalwrt/immortalwrt/raw/master/scripts/download.pl
-wget -P include/ https://github.com/immortalwrt/immortalwrt/raw/master/include/download.mk
+wget -P scripts/ https://github.com/immortalwrt/immortalwrt/raw/openwrt-21.02/scripts/download.pl
+wget -P include/ https://github.com/immortalwrt/immortalwrt/raw/openwrt-21.02/include/download.mk
 
 ### 必要的 Patches ###
 # Patch arm64 型号名称
-wget -P target/linux/generic/pending-5.4 https://github.com/immortalwrt/immortalwrt/raw/master/target/linux/generic/hack-5.4/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
+wget -P target/linux/generic/pending-5.4 https://github.com/immortalwrt/immortalwrt/raw/openwrt-21.02/target/linux/generic/pending-5.4/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
 # Patch jsonc
 wget -q https://github.com/QiuSimons/R2S-R4S-X86-OpenWrt/raw/master/PATCH/new/package/use_json_object_new_int64.patch
 patch -p1 < ./use_json_object_new_int64.patch
@@ -38,7 +38,7 @@ wget https://github.com/coolsnowwolf/lede/raw/master/target/linux/generic/hack-5
 popd
 # Patch FireWall 以增添 FullCone 功能
 mkdir package/network/config/firewall/patches
-wget -P package/network/config/firewall/patches/ https://github.com/immortalwrt/immortalwrt/raw/master/package/network/config/firewall/patches/fullconenat.patch
+wget -P package/network/config/firewall/patches/ https://github.com/immortalwrt/immortalwrt/raw/openwrt-21.02/package/network/config/firewall/patches/fullconenat.patch
 # Patch LuCI 以增添 FullCone 开关
 wget -q https://github.com/QiuSimons/R2S-R4S-X86-OpenWrt/raw/master/PATCH/new/package/luci-app-firewall_add_fullcone.patch
 patch -p1 < ./luci-app-firewall_add_fullcone.patch
@@ -72,8 +72,8 @@ ln -sf ../../../feeds/packages/lang/node-yarn ./package/feeds/packages/node-yarn
 # UPX 可执行软件压缩
 sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
 sed -i '\/autoconf\/compile :=/i\$(curdir)/upx/compile := $(curdir)/ucl/compile' ./tools/Makefile
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/tools/upx tools/upx
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/tools/ucl tools/ucl
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/tools/upx tools/upx
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/tools/ucl tools/ucl
 
 ### 获取额外的 LuCI 应用、主题和依赖 ###
 # Argon 主题

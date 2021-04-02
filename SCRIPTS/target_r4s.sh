@@ -3,9 +3,9 @@ clear
 
 # 更换为 ImmortalWrt Uboot 以及 Target
 rm -rf ./target/linux/rockchip
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/target/linux/rockchip target/linux/rockchip
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/target/linux/rockchip target/linux/rockchip
 rm -rf ./package/boot/uboot-rockchip
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/boot/uboot-rockchip package/boot/uboot-rockchip
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/boot/uboot-rockchip package/boot/uboot-rockchip
 
 # 更换超频  2.2/1.8 GHz 电压表, 调高温度墙
 rm -rf ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
@@ -17,17 +17,12 @@ sed -i 's,-mcpu=generic,-march=armv8-a+crypto+crc -mabi=lp64,g' include/target.m
 wget -P package/libs/mbedtls/patches/ https://github.com/QiuSimons/R2S-R4S-X86-OpenWrt/raw/master/PATCH/new/package/100-Implements-AES-and-GCM-with-ARMv8-Crypto-Extensions.patch
 
 # 使用 R8168 驱动
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8168 package/new/r8168
-wget -q https://github.com/QiuSimons/R2S-R4S-X86-OpenWrt/raw/master/PATCH/new/main/r8168-fix_LAN_led-for_r4s-from_TL.patch
-patch -p1 < ./r8168-fix_LAN_led-for_r4s-from_TL.patch
-sed -i 's,kmod-r8169,kmod-r8168,g' target/linux/rockchip/image/armv8.mk
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/r8168 package/new/r8168
 
 # 测试性功能
 sed -i '/CRYPTO_DEV_ROCKCHIP/d' ./target/linux/rockchip/armv8/config-5.4
-sed -i '/HW_RANDOM_ROCKCHIP/d' ./target/linux/rockchip/armv8/config-5.4
 echo '
 CONFIG_CRYPTO_DEV_ROCKCHIP=y
-CONFIG_HW_RANDOM_ROCKCHIP=y
 ' >> ./target/linux/rockchip/armv8/config-5.4
 
 # IRQ 调优
