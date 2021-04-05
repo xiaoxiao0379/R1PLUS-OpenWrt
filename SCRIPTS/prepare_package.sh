@@ -89,7 +89,7 @@ svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/lean/luci-app-arpbind pa
 svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/lean/luci-app-autoreboot package/lean/luci-app-autoreboot
 # Boost 通用即插即用
 svn co https://github.com/ryohuang/slim-wrt/trunk/slimapps/application/luci-app-boostupnp package/new/luci-app-boostupnp
-sed -i 's,https://api.ipify.org,http://members.3322.org/dyndns/getip,g' ./package/new/luci-app-boostupnp/root/usr/sbin/boostupnp.sh
+sed -i 's,api.ipify.org,myip.ipip.net/s,g' ./package/new/luci-app-boostupnp/root/usr/sbin/boostupnp.sh
 # CPU 控制相关
 svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/lean/luci-app-cpufreq package/lean/luci-app-cpufreq
 svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/others/luci-app-cpulimit package/lean/luci-app-cpulimit
