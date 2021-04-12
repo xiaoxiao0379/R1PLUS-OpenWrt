@@ -112,7 +112,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipv6-helper packa
 # OLED 驱动程序
 svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/others/luci-app-oled package/new/luci-app-oled
 # OpenClash
-svn co https://github.com/msylgj/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
+svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
 # 清理内存
 svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/lean/luci-app-ramfree package/lean/luci-app-ramfree
 # ServerChan 微信推送
