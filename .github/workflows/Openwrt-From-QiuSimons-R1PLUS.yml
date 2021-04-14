@@ -57,7 +57,7 @@ jobs:
           df -h
       - name: Prepare Sources
         run: |
-          sudo chown -R runner:runner /home/runner/work/R1plus-OpenWrt
+          sudo chown -R runner:runner /home/runner/work/R1PLUS-OpenWrt
           #wget -q https://github.com/QiuSimons/R2S-R4S-X86-OpenWrt/raw/master/SCRIPTS/01_get_ready.sh
           #/bin/bash 01_get_ready.sh
           git clone -b openwrt-21.02 --single-branch https://git.openwrt.org/openwrt/openwrt.git openwrt
