@@ -1,4 +1,4 @@
-name: R2S Openwrt From QiuSimons
+name: R1PLUS-OpenWrt
 
 on:
   # push:
@@ -6,10 +6,10 @@ on:
   #     - master
   #   paths:
   #     - '.github/workflows/Openwrt-From-QiuSimons-R2S.yml'
-  schedule:
-    - cron: '00 04 * * 1'
+  # schedule:
+  #  - cron: '00 04 * * 1'
   watch:
-    types: [started]
+    types: started
 
 jobs:
 
@@ -57,7 +57,7 @@ jobs:
           df -h
       - name: Prepare Sources
         run: |
-          sudo chown -R runner:runner /home/runner/work/R2S-R4S-OpenWrt
+          sudo chown -R runner:runner /home/runner/work/R1plus-OpenWrt
           #wget -q https://github.com/QiuSimons/R2S-R4S-X86-OpenWrt/raw/master/SCRIPTS/01_get_ready.sh
           #/bin/bash 01_get_ready.sh
           git clone -b openwrt-21.02 --single-branch https://git.openwrt.org/openwrt/openwrt.git openwrt
@@ -65,9 +65,9 @@ jobs:
         run: |
           cd openwrt
           cp -r ../SCRIPTS/prepare_package.sh ./prepare_package.sh
-          cp -r ../SCRIPTS/target_r2s.sh ./target_r2s.sh
+          cp -r ../SCRIPTS/r1plus ./r1plus
           /bin/bash prepare_package.sh
-          /bin/bash target_r2s.sh
+          /bin/bash r1plus
       - name: Convert Translation
         run: |
           cd openwrt
@@ -81,7 +81,7 @@ jobs:
       - name: Make Config
         run: |
           cd openwrt
-          mv ../SEED/config_r2s.seed .config
+          mv ../SEED/config_r1plus.seed .config
           make defconfig
       - name: Smart chmod
         run: |
@@ -120,40 +120,35 @@ jobs:
           cd openwrt && make -j1 V=s
       - name: Print Disk Space After
         run: df -h
-      - name: Assemble Artifact
-        id: assemble_artifact
+      - name: Organize files
+        id: organize
         run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
           mv openwrt/bin/targets/rockchip/armv8/*sysupgrade.img* ./artifact/
           cd ./artifact/
+          ls -Ahl
           gzip -d *.gz && exit 0
-          gzip *.img
-          sha256sum *.gz | tee R2S-OPoA-$(date +%Y-%m-%d).sha256sum
-          mv *ext4* ./R2S-OPoA-$(date +%Y-%m-%d)-ext4.img.gz
-          mv *squashfs* ./R2S-OPoA-$(date +%Y-%m-%d)-sfs.img.gz
-          cd ../openwrt
-          cp .config ../artifact/R2S-config-full.seed
-          ./scripts/diffconfig.sh > ../artifact/R2S-config-diff.seed
-          artifact_tag="R2S-OPoA-snapshot-$(date +%Y-%m-%d)"
-          release_tag="R2S-R4S-OPoA-snapshot-$(date +%Y-%m-%d)"
-          echo "##[set-output name=artifact_tag;]$artifact_tag"
-          echo "##[set-output name=release_tag;]$release_tag"
-      - name: Upload Artifact
+          gzip --best *.img
+          ls -Ahl
+          sha256sum openwrt*r1plus* | tee R1PLUS-$(date +%Y-%m-%d)-21.02.sha256sum
+          zip R1PLUS-$(date +%Y-%m-%d)-21.02-ext4.zip *r1plus*ext4*
+          zip R1PLUS-$(date +%Y-%m-%d)-21.02-sfs.zip *r1plus*squashfs*
+          ls -Ahl
+      - name: Upload artifact
         uses: actions/upload-artifact@main
         with:
-          name: ${{ steps.assemble_artifact.outputs.artifact_tag }}-artifact
+          name: OpenWRT_21.02
           path: ./artifact/
+
       - name: Create release
         id: create_release
         uses: ncipollo/release-action@v1.8.0
         with:
-          name: ${{ steps.assemble_artifact.outputs.release_tag }}-ROM
+          name: OpenWRT-R1PLUS-X86-21.02
           allowUpdates: true
-          tag: ${{ steps.assemble_artifact.outputs.release_tag }}
+          tag: 2102
           commit: master
           replacesArtifacts: true
-          draft: false
-          prerelease: false
           token: ${{ secrets.workflow_token }}
-          artifacts: ./artifact/*.gz,./artifact/*.seed,./artifact/*.sha256sum
+          artifacts: ./artifact/*.zip
