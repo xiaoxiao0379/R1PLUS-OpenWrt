@@ -5,7 +5,7 @@ on:
   #   branches:
   #     - master
   #   paths:
-  #     - '.github/workflows/Openwrt-From-QiuSimons-R2S.yml'
+  #     - '.github/workflows/Openwrt-From-QiuSimons-R1PLUS.yml'
   # schedule:
   #  - cron: '00 04 * * 1'
   watch:
@@ -65,9 +65,9 @@ jobs:
         run: |
           cd openwrt
           cp -r ../SCRIPTS/prepare_package.sh ./prepare_package.sh
-          cp -r ../SCRIPTS/r1plus ./r1plus
+          cp -r ../SCRIPTS/r1plus.sh ./r1plus.sh
           /bin/bash prepare_package.sh
-          /bin/bash r1plus
+          /bin/bash r1plus.sh
       - name: Convert Translation
         run: |
           cd openwrt
