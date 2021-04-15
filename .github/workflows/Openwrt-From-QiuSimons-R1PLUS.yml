@@ -127,34 +127,27 @@ jobs:
           mkdir -p ./artifact/
           mv openwrt/bin/targets/rockchip/armv8/*sysupgrade.img* ./artifact/
           cd ./artifact/
+          ls -Ahl
           gzip -d *.gz && exit 0
-          gzip *.img
-          sha256sum *.gz | tee R1PLUS-$(date +%Y-%m-%d).sha256sum
-          mv *ext4* ./R1PLUS-$(date +%Y-%m-%d)-ext4.img.gz
-          mv *squashfs* ./R1PLUS-$(date +%Y-%m-%d)-sfs.img.gz
-          cd ../openwrt
-          cp .config ../artifact/R1PLUS-config.seed
-          ./scripts/diffconfig.sh > ../artifact/R2S-config-diff.seed
-          artifact_tag="R1PLUS-$(date +%Y-%m-%d)"
-          release_tag="R1PLUS-$(date +%Y-%m-%d)"
-          echo "##[set-output name=artifact_tag;]$artifact_tag"
-          echo "##[set-output name=release_tag;]$release_tag"
-      - name: Upload Artifact
+          gzip --best *.img
+          ls -Ahl
+          sha256sum openwrt*r1plus* | tee R1PLUS-$(date +%Y-%m-%d)-21.02.sha256sum
+          zip R1PLUS-$(date +%Y-%m-%d)-21.02-ext4.zip *r1plus*ext4*
+          zip R1PLUS-$(date +%Y-%m-%d)-21.02-sfs.zip *r1plus*squashfs*
+          ls -Ahl
+      - name: Upload artifact
         uses: actions/upload-artifact@main
         with:
-          name: ${{ steps.assemble_artifact.outputs.artifact_tag }}-artifact
+          name: OpenWRT_21.02
           path: ./artifact/
-
       - name: Create release
         id: create_release
         uses: ncipollo/release-action@v1.8.0
         with:
-          name: ${{ steps.assemble_artifact.outputs.release_tag }}-ROM
+          name: R1PLUS-OpenWrt-21.02
           allowUpdates: true
-          tag: ${{ steps.assemble_artifact.outputs.release_tag }}
+          tag: 2102
           commit: master
           replacesArtifacts: true
-          draft: false
-          prerelease: false
           token: ${{ secrets.workflow_token }}
-          artifacts: ./artifact/*.gz,./artifact/*.seed,./artifact/*.sha256sum
+          artifacts: ./artifact/*.zip
