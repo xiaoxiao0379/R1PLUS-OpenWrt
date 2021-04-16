@@ -140,6 +140,7 @@ jobs:
         with:
           name: OpenWRT_21.02
           path: ./artifact/
+          retention-days: 7
       - name: Create release
         id: create_release
         uses: ncipollo/release-action@v1.8.0
