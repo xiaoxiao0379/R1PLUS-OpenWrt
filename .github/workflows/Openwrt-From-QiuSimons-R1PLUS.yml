@@ -149,5 +149,5 @@ jobs:
           tag: 2102
           commit: master
           replacesArtifacts: true
-          token: ${{ secrets.workflow_token }}
+          token: '${{ secrets.WORKFLOW_TOKEN }}'
           artifacts: ./artifact/*.zip
