@@ -138,7 +138,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@main
         with:
-          name: OpenWRT_21.02
+          name: R1PLUS-OpenWrt-21.02
           path: ./artifact/
           retention-days: 7
       - name: Create release
