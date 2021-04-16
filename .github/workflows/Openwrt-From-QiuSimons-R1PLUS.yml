@@ -131,10 +131,6 @@ jobs:
           gzip -d *.gz && exit 0
           gzip --best *.img
           ls -Ahl
-          sha256sum openwrt*r1plus* | tee R1PLUS-$(date +%Y-%m-%d)-21.02.sha256sum
-          zip R1PLUS-$(date +%Y-%m-%d)-21.02-ext4.zip *r1plus*ext4*
-          zip R1PLUS-$(date +%Y-%m-%d)-21.02-sfs.zip *r1plus*squashfs*
-          ls -Ahl
       - name: Upload artifact
         uses: actions/upload-artifact@main
         with:
